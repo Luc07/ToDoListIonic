@@ -1,0 +1,1 @@
+TO-DO-LIST done as practice and exercise for Mobile Ionic Class

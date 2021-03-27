@@ -1,0 +1,57 @@
+<ion-app>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>
+        To-Do-List
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content>
+    <ion-list>
+      <ion-item>
+        <input [(ngModel)]="newTask.content" type="text" style="margin-right:2%; width:90%;">
+        <ion-button size="small" color="secondary" fill="solid" (click)="saveTask()">
+          Salvar
+        </ion-button>
+      </ion-item>
+
+      <ion-list-header style="font-size:25px;">
+        Tarefas
+      </ion-list-header>
+      <ion-card *ngFor="let task of tasks">
+        <ion-item>
+          <div>
+            <input type="checkbox">
+          </div>
+          <div *ngIf="!enableEdit">
+            <ion-label> {{ task.content }} </ion-label>
+          </div>
+          <div *ngIf="enableEdit">
+            <ion-item>
+              <p style="margin-right:10px;">Editar:</p>
+              <input style="width: 80%;" [(ngModel)]="task.content" type="text">
+            </ion-item>
+            
+          </div>
+          <ion-buttons slot="end">
+            <ion-button (click)="changeEdit()">
+              <div *ngIf="enableEdit">
+                <ion-button (click)="editTask(task)">
+                  <ion-icon name="checkmark"></ion-icon>
+                </ion-button>
+              </div>
+              <div *ngIf="!enableEdit">
+                <ion-button>
+                  <ion-icon name="Pencil"></ion-icon>
+                </ion-button>
+              </div>
+            </ion-button>
+            <ion-button (click)="deleteTask(task)">
+              <ion-icon name="trash"></ion-icon>
+            </ion-button>
+          </ion-buttons>
+        </ion-item>
+      </ion-card>
+    </ion-list>
+  </ion-content>
+</ion-app>
